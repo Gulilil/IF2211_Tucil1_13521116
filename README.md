@@ -6,7 +6,6 @@
 * [Program Description](#program-description)
 * [How to Run Program](#how-to-run-program)
 * [Implementation Screenshots](#implementation-screenshots)
-* [Team Members](#team-members)
 * [Progress Report](#progress-report)
 * [Folders and Files Description](#folders-and-files-description)
 
@@ -17,6 +16,16 @@
 ## **Implementation Screenshots**
 
 ## **Progress Report**
+
+| Poin | Ya | Tidak|
+|-----|-----|------|
+|Program berhasil dikompilasi tanpa kesalahan|   |   |
+|Program berhasil *running* |  |  |
+|Program dapat membaca input / generate sendiri dan memberikan luaran |  |  |
+| Solusi yang diberikan program memenuhi (berhasil mencapai 24) |  |  |
+| Program dapat menyimpan solusi dalam file teks |  |  |
+
+
 
 ## **Folders and Files Descriptions**
 
