@@ -1,6 +1,8 @@
 #include <iostream>
+#include <chrono>
 #include "submain.cpp"
 using namespace std;
+using namespace std::chrono;
 
 int main () {
     // Variables Declaration
@@ -71,6 +73,11 @@ int main () {
     printArr(arr);
 
     // Solving Algorithm
+    cout << "The program starts to solve..." << endl;
+
+    // Starting the timer
+    auto start = high_resolution_clock::now();
+
     for (w = 0; w < 4; w++){
         for (x = 0; x < 4 ; x++){
             for (y = 0; y < 4; y++){
@@ -85,6 +92,8 @@ int main () {
                             for (j = 0; j < 4 ; j++){
                                 for (k = 0; k < 4; k++){
                                     temp = calculate1(i,j,k, newArr);
+                                    // cout << w << x << y << z << endl;
+                                    // cout << i << j << k << endl;
                                     // cout << temp << "|1|" <<endl; // Hanya untuk mengecek
                                     if (temp == 24){
                                         tempOpr1 = makeOpr(i, j, k, newArr, 1);
@@ -131,10 +140,20 @@ int main () {
     }
     
     cout << "The amount of solutions: " << nSolutions << endl;
-    for (i = 0; i < nSolutions; i++){
-        cout << arrSolutions[i] << endl;
+
+    if (nSolutions == 0){
+        cout << "No equations can be showed since there is no solution." << endl;
+    } else {
+        for (i = 0; i < nSolutions; i++){
+            cout << arrSolutions[i] << endl;
+        }
     }
 
+    // Stopping the timer
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop-start);
+
+    cout << "Execution time: " << duration.count() << " microseconds" << endl;
 
     return 0;
 }
