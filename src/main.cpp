@@ -5,6 +5,7 @@ using namespace std;
 int main () {
     // Variables Declaration
     int i, j , k;
+    int x;
     int arr[4];
     int allValid = 1;
     int nSolutions = 0;
@@ -13,7 +14,7 @@ int main () {
     
     // Reading Input
     int ans;
-    int temp;
+    float temp;
     cout << "Please insert (1) to input the numbers yourself or " << endl;
     cout << "(2) to automatically generate random numbers. " << endl;
     cin >> ans;
@@ -56,9 +57,7 @@ int main () {
                 }
             }
         }
-    }
-
-    else {
+    } else {
         // Random Number Generator
         cout << "The program will generate random inputs for you." << endl;
 
@@ -66,9 +65,10 @@ int main () {
         for (i = 0 ; i < 4; i++){
             arr[i] = (rand() % 13) +1;
         }
-        cout << "Here are your numbers : ";
-        printArr(arr);
     }
+
+    cout << "Here are your numbers : ";
+    printArr(arr);
 
     // Solving Algorithm
     for (i = 0; i < 4 ; i++){
@@ -76,44 +76,44 @@ int main () {
             for (k = 0; k < 4; k++){
                 temp = calculate1(i,j,k, arr);
                 cout << i << j << k << endl;
-                //cout << temp << "|1|" <<endl;
+                // cout << temp << "|1|" <<endl; // Hanya untuk mengecek
                 if (temp == 24){
                     tempOpr1 = makeOpr(i, j, k, arr, 1);
-                    //arrSolutions[nSolutions] = tempOpr;
+                    arrSolutions[nSolutions] = tempOpr1;
                     nSolutions++;
                 }
                 temp = calculate2(i,j,k, arr);
-                //cout << temp << "|2|" <<endl;
+                //cout << temp << "|2|" <<endl; // Hanya untuk mengecek
                 if (temp == 24){
                     tempOpr2 = makeOpr(i, j, k, arr, 2);
-                    //arrSolutions[nSolutions] = tempOpr;
+                    arrSolutions[nSolutions] = tempOpr2;
                     nSolutions++;
                 }
                 temp = calculate3(i,j,k, arr);
-                //cout << temp << "|3|" <<endl;
+                // cout << temp << "|3|" <<endl; // Hanya untuk mengecek
                 if (temp == 24){
                     tempOpr3 = makeOpr(i, j, k, arr, 3);
-                    //arrSolutions[nSolutions] = tempOpr;
+                    arrSolutions[nSolutions] = tempOpr3;
                     nSolutions++;
                 }
                 temp = calculate4(i,j,k, arr);
-                //cout << temp << "|4|" <<endl;
+                //cout << temp << "|4|" <<endl; // Hanya untuk mengecek
                 if (temp == 24){
                     tempOpr4 = makeOpr(i, j, k, arr, 4);
-                    //arrSolutions[nSolutions] = tempOpr;
+                    arrSolutions[nSolutions] = tempOpr4;
                     nSolutions++;
                 }
                 temp = calculate5(i,j,k, arr);
-                //cout << temp << "|5|" <<endl;
+                // cout << temp << "|5|" <<endl; // Hanya untuk mengecek
                 if (temp == 24){
                     tempOpr5 = makeOpr(i, j, k, arr, 5);
-                    //arrSolutions[nSolutions] = tempOpr;
+                    arrSolutions[nSolutions] = tempOpr5;
                     nSolutions++;
                 }
             }
         }
     }
-    cout << nSolutions << endl;
+    cout << "The amount of solutions: " << nSolutions << endl;
     for (i = 0; i < nSolutions; i++){
         cout << arrSolutions[i] << endl;
     }
@@ -121,10 +121,3 @@ int main () {
 
     return 0;
 }
-
-
-/*
-
-
-
-*/

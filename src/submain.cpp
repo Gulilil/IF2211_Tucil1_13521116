@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <string>
 #include <cstdlib>
 #include <time.h>
 using namespace std;
@@ -68,7 +67,7 @@ void printArr(int arr[4]){
     cout << endl;
 }
 
-int operate(int key, int a, int b){
+float operate(int key, float a, float b){
     // Melakukan operasi dengan key yang telah ditentukan
     if (key == 0){
         return a + b;
@@ -92,27 +91,27 @@ a x (b y (c z d ))
 ket : a, b, c, d => angka (integer) | x, y, z => operator
 */
 
-int calculate1(int x, int y, int z, int arr[4]){
+float calculate1(int x, int y, int z, int arr[4]){
     // Melakukan perhitungan jenis pengurungan 1
     return operate(z, (operate(y, (operate(x, arr[0], arr[1])), arr[2])), arr[3]);
 }
 
-int calculate2(int x, int y, int z, int arr[4]){
+float calculate2(int x, int y, int z, int arr[4]){
     // Melakukan perhitungan jenis pengurungan 2
     return operate(z, (operate(y, arr[0], (operate(y, arr[1], arr[2])))), arr[3]);
 }
 
-int calculate3(int x, int y, int z, int arr[4]){
+float calculate3(int x, int y, int z, int arr[4]){
     // Melakukan perhitungan jenis pengurungan 3
     return operate(y, (operate(x, arr[0], arr[1])) ,(operate(z, arr[2], arr[3])) );
 }
 
-int calculate4(int x, int y, int z, int arr[4]){
+float calculate4(int x, int y, int z, int arr[4]){
     // Melakukan perhitungan jenis pengurungan 4
     return operate(x, arr[0], (operate(z, (operate(y, arr[1], arr[2])), arr[3])));
 }
 
-int calculate5(int x, int y, int z, int arr[4]){
+float calculate5(int x, int y, int z, int arr[4]){
     // Melakukan perhitungan jenis pengurungan 5
     return operate(x, arr[0], (operate(y, arr[1], (operate(x, arr[2], arr[3])))));
 }
@@ -129,7 +128,7 @@ char keyToOpr(int x){
         case 2:
             return '*';
             break;
-        case 3:
+        default:
             return '/';
             break;
     }
@@ -141,37 +140,36 @@ string makeOpr(int x, int y, int z, int arr[4], int type){
     char a = keyToOpr(x);
     char b = keyToOpr(y);
     char c = keyToOpr(z);
-    switch (type){
-        case 1:
-            // ((a x b) y c) z d
-            res += "((" + to_string(arr[0]) + a + to_string(arr[1]) + ')';
-            res += b + to_string(arr[2]) + ')';
-            res += c + to_string(arr[3]);
-            return res;
-        case 2:
-            // ( a x (b y c))z d
-            res += '(' + to_string(arr[0]) + a + '(';
-            res +=  to_string(arr[1]) + b + to_string(arr[2]) + "))";
-            res += c + to_string(arr[3]);
-            return res;
-        case 3:
-            // ( a x b) y (c z d)
-            res += '(' + to_string(arr[0]) + a + to_string(arr[1]);
-            res += ')' + b + '(';
-            res +=  to_string(arr[2]) + c + to_string(arr[3]) + ')';
-            return res;
-        case 4:
-            // a x ((b y c) z d )
-            res += to_string(arr[0])+a+"((";
-            res += to_string(arr[1])+ b+ to_string(arr[2]) + ')';
-            res += c + to_string(arr[3]) + ')';
-            return res;
-        case 5:
-            // a x (b y (c z d ))
-            res += to_string(arr[0]) + a + '(';
-            res += to_string(arr[1]) + b + '(';
-            res += to_string(arr[2]) + c + to_string(arr[3]) + "))";
-            return res;
+    if (type == 1){
+        // ((a x b) y c) z d
+        res += "((" + to_string(arr[0]) + a + to_string(arr[1]) + ')';
+        res += b + to_string(arr[2]) + ')';
+        res += c + to_string(arr[3]);
+        return res;
+    } else if (type == 2){
+        // ( a x (b y c))z d
+        res += '(' + to_string(arr[0]) + a + '(';
+        res +=  to_string(arr[1]) + b + to_string(arr[2]) + "))";
+        res += c + to_string(arr[3]);
+        return res; 
+    } else if (type == 3){
+        // ( a x b) y (c z d)
+        res += '(' + to_string(arr[0]) + a + to_string(arr[1]) + ')';
+        res += b;
+        res +=  '('+ to_string(arr[2]) + c + to_string(arr[3]) + ')';
+        return res;         
+    } else if (type == 4){
+        // a x ((b y c) z d )
+        res += to_string(arr[0])+a+"((";
+        res += to_string(arr[1])+ b+ to_string(arr[2]) + ')';
+        res += c + to_string(arr[3]) + ')';
+        return res;
+    } else {
+        // a x (b y (c z d ))
+        res += to_string(arr[0]) + a + '(';
+        res += to_string(arr[1]) + b + '(';
+        res += to_string(arr[2]) + c + to_string(arr[3]) + "))";
+        return res;
     }
     
 }
