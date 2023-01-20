@@ -5,7 +5,7 @@ using namespace std;
 int main () {
     // Variables Declaration
     int i, j , k;
-    int x;
+    int w, x, y, z;
     int arr[4];
     int allValid = 1;
     int nSolutions = 0;
@@ -71,48 +71,65 @@ int main () {
     printArr(arr);
 
     // Solving Algorithm
-    for (i = 0; i < 4 ; i++){
-        for (j = 0; j < 4 ; j++){
-            for (k = 0; k < 4; k++){
-                temp = calculate1(i,j,k, arr);
-                cout << i << j << k << endl;
-                // cout << temp << "|1|" <<endl; // Hanya untuk mengecek
-                if (temp == 24){
-                    tempOpr1 = makeOpr(i, j, k, arr, 1);
-                    arrSolutions[nSolutions] = tempOpr1;
-                    nSolutions++;
-                }
-                temp = calculate2(i,j,k, arr);
-                //cout << temp << "|2|" <<endl; // Hanya untuk mengecek
-                if (temp == 24){
-                    tempOpr2 = makeOpr(i, j, k, arr, 2);
-                    arrSolutions[nSolutions] = tempOpr2;
-                    nSolutions++;
-                }
-                temp = calculate3(i,j,k, arr);
-                // cout << temp << "|3|" <<endl; // Hanya untuk mengecek
-                if (temp == 24){
-                    tempOpr3 = makeOpr(i, j, k, arr, 3);
-                    arrSolutions[nSolutions] = tempOpr3;
-                    nSolutions++;
-                }
-                temp = calculate4(i,j,k, arr);
-                //cout << temp << "|4|" <<endl; // Hanya untuk mengecek
-                if (temp == 24){
-                    tempOpr4 = makeOpr(i, j, k, arr, 4);
-                    arrSolutions[nSolutions] = tempOpr4;
-                    nSolutions++;
-                }
-                temp = calculate5(i,j,k, arr);
-                // cout << temp << "|5|" <<endl; // Hanya untuk mengecek
-                if (temp == 24){
-                    tempOpr5 = makeOpr(i, j, k, arr, 5);
-                    arrSolutions[nSolutions] = tempOpr5;
-                    nSolutions++;
+    for (w = 0; w < 4; w++){
+        for (x = 0; x < 4 ; x++){
+            for (y = 0; y < 4; y++){
+                for (z = 0; z< 4; z++){
+                    if (w != x && w != y && w != z && x != y && x != z && y != z){
+                        int newArr[4];
+                        newArr[0] = arr[w];
+                        newArr[1] = arr[x];
+                        newArr[2] = arr[y];
+                        newArr[3] = arr[z];
+                        for (i = 0; i < 4 ; i++){
+                            for (j = 0; j < 4 ; j++){
+                                for (k = 0; k < 4; k++){
+                                    temp = calculate1(i,j,k, newArr);
+                                    // cout << temp << "|1|" <<endl; // Hanya untuk mengecek
+                                    if (temp == 24){
+                                        tempOpr1 = makeOpr(i, j, k, newArr, 1);
+                                        arrSolutions[nSolutions] = tempOpr1;
+                                        nSolutions++;
+                                    }
+                                    temp = calculate2(i,j,k, newArr);
+                                    //cout << temp << "|2|" <<endl; // Hanya untuk mengecek
+                                    if (temp == 24){
+                                        tempOpr2 = makeOpr(i, j, k, newArr, 2);
+                                        arrSolutions[nSolutions] = tempOpr2;
+                                        nSolutions++;
+                                    }
+                                    temp = calculate3(i,j,k, newArr);
+                                    // cout << temp << "|3|" <<endl; // Hanya untuk mengecek
+                                    if (temp == 24){
+                                        tempOpr3 = makeOpr(i, j, k, newArr, 3);
+                                        arrSolutions[nSolutions] = tempOpr3;
+                                        nSolutions++;
+                                    }
+                                    temp = calculate4(i,j,k, newArr);
+                                    //cout << temp << "|4|" <<endl; // Hanya untuk mengecek
+                                    if (temp == 24){
+                                        tempOpr4 = makeOpr(i, j, k, newArr, 4);
+                                        arrSolutions[nSolutions] = tempOpr4;
+                                        nSolutions++;
+                                    }
+                                    temp = calculate5(i,j,k, newArr);
+                                    // cout << temp << "|5|" <<endl; // Hanya untuk mengecek
+                                    if (temp == 24){
+                                        tempOpr5 = makeOpr(i, j, k, newArr, 5);
+                                        arrSolutions[nSolutions] = tempOpr5;
+                                        nSolutions++;
+                                    }
+                                }
+                            }
+                        }
+
+
+                    }
                 }
             }
         }
     }
+    
     cout << "The amount of solutions: " << nSolutions << endl;
     for (i = 0; i < nSolutions; i++){
         cout << arrSolutions[i] << endl;

@@ -98,7 +98,7 @@ float calculate1(int x, int y, int z, int arr[4]){
 
 float calculate2(int x, int y, int z, int arr[4]){
     // Melakukan perhitungan jenis pengurungan 2
-    return operate(z, (operate(y, arr[0], (operate(y, arr[1], arr[2])))), arr[3]);
+    return operate(z, (operate(x, arr[0], (operate(y, arr[1], arr[2])))), arr[3]);
 }
 
 float calculate3(int x, int y, int z, int arr[4]){
@@ -113,7 +113,7 @@ float calculate4(int x, int y, int z, int arr[4]){
 
 float calculate5(int x, int y, int z, int arr[4]){
     // Melakukan perhitungan jenis pengurungan 5
-    return operate(x, arr[0], (operate(y, arr[1], (operate(x, arr[2], arr[3])))));
+    return operate(x, arr[0], (operate(y, arr[1], (operate(z, arr[2], arr[3])))));
 }
 
 char keyToOpr(int x){
