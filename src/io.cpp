@@ -67,7 +67,7 @@ void printArr(int arr[4]){
 
 void writeOnFile(string strArr[500], string fileName, int n){
     ofstream outputFile;
-    string path = "test/"+fileName+".txt";
+    string path = "../test/"+fileName+".txt";
     outputFile.open(path);
 
     outputFile << n << endl;
