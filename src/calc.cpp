@@ -4,68 +4,6 @@
 #include <time.h>
 using namespace std;
 
-char capitalize(char C){
-    // Digunakan untuk memastikan bahwa input user untuk Char adalah huruf Kapital
-    if ( C >= 97 && C <= 122){
-        return (C-32);
-    }
-}
-
-int integerConvert(string S){
-    // Digunakan untuk mengubah nilai A menjadi 1, J menjadi 11, Q menjadi 12, dan K menjadi 13
-    if (S.length() > 2){
-        return -999;
-    } else if (S.length() == 2){
-        if (S[0] == '1' && S[1] == '0'){
-            return 10;
-        } else {
-            return -999;
-        }
-    } else {
-        char temp = capitalize(S[0]);
-        if ( temp >= 50 && temp <= 57){ // Angka
-            return (temp-48);
-        } else {
-            if (temp == 65){ // Ace
-                return 1;
-            } else if ( temp == 74){ // Jack
-                return 11;
-            } else if (temp == 81){ // Queen
-                return 12; 
-            } else if (temp == 75){ // King
-                return 13;
-            } else { // Untuk kasus dimana input tidak valid
-                return -999;
-            }
-        }
-    }
-
-}
-
-void printArr(int arr[4]){
-    // Melakukan print atas nilai-nilai yang dikandung pada array
-    int i;
-    for( i = 0 ; i < 4; i++){
-        switch (arr[i]){
-            case 1:
-                cout << 'A' << ' ';
-                break;
-            case 11:
-                cout << 'J'<< ' ';
-                break;
-            case 12:
-                cout << 'Q'<< ' ';
-                break;
-            case 13:
-                cout << 'K'<< ' ';
-                break;
-            default:
-                cout << arr[i]<< ' ';
-                break;
-        }
-    }
-    cout << endl;
-}
 
 float operate(int key, float a, float b){
     // Melakukan operasi dengan key yang telah ditentukan
@@ -78,6 +16,31 @@ float operate(int key, float a, float b){
     } else {
         return a / b;
     }
+}
+
+int isSamePermute(int arr1[4], int arr2[4]){
+    // Melakukan cek apakah sebuah array yang berisikan sebuah permutasi adalah array yang sama
+    // Digunakan untuk menunjang pengecekan permutasi berulang
+    int i;
+    for (i = 0; i < 4; i++){
+        if (arr1[i] != arr2[i]){
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int isUsedPermute(int arr[4], int permArr[24][4], int n){
+    // Melakukan cek apakah permutasi yang serupa telah dilakukan sebelumnya. 
+    // Hal ini digunakan untuk menghindari pengulangan untuk urutan angka yang serupa
+    int i;
+    int used;
+    for (i = 0; i < n; i++){
+        if (isSamePermute(arr, permArr[i])){
+            return 1;
+        }
+    }
+    return 0;
 }
 
 /*

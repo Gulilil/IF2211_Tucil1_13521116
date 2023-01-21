@@ -1,6 +1,7 @@
 #include <iostream>
 #include <chrono>
-#include "submain.cpp"
+#include "calc.cpp"
+#include "io.cpp"
 using namespace std;
 using namespace std::chrono;
 
@@ -11,23 +12,29 @@ int main () {
     int arr[4];
     int allValid = 1;
     int nSolutions = 0;
-    string tempOpr1, tempOpr2, tempOpr3, tempOpr4, tempOpr5;
-    string arrSolutions[50];
+    string tempOpr;
+    string arrSolutions[500];
+    int permuteArr[24][4];
+    int nPermutes = 0;
     
     // Reading Input
     int ans;
     float temp;
-    cout << "Please insert (1) to input the numbers yourself or " << endl;
+    cout << "Hi there! Welcome to 24 card game solver! " << endl;
+    cout << "Here are the options you can use to run the program: " << endl;
+    cout << "(1) to manually insert your desired numbers. " << endl;
     cout << "(2) to automatically generate random numbers. " << endl;
+    cout << "=> " ;
     cin >> ans;
     while (ans > 2 || ans < 1){
-        cout << "The answer you just inputed is invalid. Please insert an appropriate input." << endl;
+        cout << "The answer you just inputted is invalid. Please insert an appropriate input." << endl;
+        cout << "=> " ;
         cin >> ans;
     }
 
     if (ans == 1){
         cout << "Please insert the desired numbers. List of valid inputs:" << endl;
-        cout << "A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K." << endl;
+        cout << "A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K. (e.g. 10 A 3 J)" << endl;
         string a, b, c, d;
         cout << "=> " ;
         cin >> a >> b >> c >> d;
@@ -88,48 +95,77 @@ int main () {
                         newArr[1] = arr[x];
                         newArr[2] = arr[y];
                         newArr[3] = arr[z];
-                        for (i = 0; i < 4 ; i++){
-                            for (j = 0; j < 4 ; j++){
-                                for (k = 0; k < 4; k++){
-                                    temp = calculate1(i,j,k, newArr);
-                                    // cout << w << x << y << z << endl;
-                                    // cout << i << j << k << endl;
-                                    // cout << temp << "|1|" <<endl; // Hanya untuk mengecek
-                                    if (temp == 24){
-                                        tempOpr1 = makeOpr(i, j, k, newArr, 1);
-                                        arrSolutions[nSolutions] = tempOpr1;
-                                        nSolutions++;
-                                    }
-                                    temp = calculate2(i,j,k, newArr);
-                                    //cout << temp << "|2|" <<endl; // Hanya untuk mengecek
-                                    if (temp == 24){
-                                        tempOpr2 = makeOpr(i, j, k, newArr, 2);
-                                        arrSolutions[nSolutions] = tempOpr2;
-                                        nSolutions++;
-                                    }
-                                    temp = calculate3(i,j,k, newArr);
-                                    // cout << temp << "|3|" <<endl; // Hanya untuk mengecek
-                                    if (temp == 24){
-                                        tempOpr3 = makeOpr(i, j, k, newArr, 3);
-                                        arrSolutions[nSolutions] = tempOpr3;
-                                        nSolutions++;
-                                    }
-                                    temp = calculate4(i,j,k, newArr);
-                                    //cout << temp << "|4|" <<endl; // Hanya untuk mengecek
-                                    if (temp == 24){
-                                        tempOpr4 = makeOpr(i, j, k, newArr, 4);
-                                        arrSolutions[nSolutions] = tempOpr4;
-                                        nSolutions++;
-                                    }
-                                    temp = calculate5(i,j,k, newArr);
-                                    // cout << temp << "|5|" <<endl; // Hanya untuk mengecek
-                                    if (temp == 24){
-                                        tempOpr5 = makeOpr(i, j, k, newArr, 5);
-                                        arrSolutions[nSolutions] = tempOpr5;
-                                        nSolutions++;
+
+                        // Make sure multiple same numbers are not processed multiple times
+                        if (!isUsedPermute(newArr, permuteArr, nPermutes)){
+
+                            // Every valid permutation will be stored in the array
+                            // the index of permutation array will increase
+                            for (i = 0; i < 4; i++){
+                                permuteArr[nPermutes][i] = newArr[i];
+                            }
+                            nPermutes++;
+
+                            // 4x4x4 loops represents 4 options for 3 operations that are used in calculations
+                            for (i = 0; i < 4 ; i++){
+                                for (j = 0; j < 4 ; j++){
+                                    for (k = 0; k < 4; k++){
+                                        temp = calculate1(i,j,k, newArr);
+
+                                        // cout << temp << "|1|" <<endl; // Hanya untuk mengecek
+                                        if (temp == 24){
+                                            tempOpr = makeOpr(i, j, k, newArr, 1);
+                                            // cout << tempOpr << endl;
+                                            arrSolutions[nSolutions] = tempOpr;
+                                            if(nSolutions < 500){
+                                                nSolutions++;
+                                            }
+                                        }
+                                        temp = calculate2(i,j,k, newArr);
+                                        //cout << temp << "|2|" <<endl; // Hanya untuk mengecek
+                                        if (temp == 24){
+                                            tempOpr = makeOpr(i, j, k, newArr, 2);
+                                            // cout << tempOpr << endl;
+                                            arrSolutions[nSolutions] = tempOpr;
+                                            if(nSolutions < 500){
+                                                nSolutions++;
+                                            }
+                                        }
+                                        temp = calculate3(i,j,k, newArr);
+                                        // cout << temp << "|3|" <<endl; // Hanya untuk mengecek
+                                        if (temp == 24){
+                                            tempOpr = makeOpr(i, j, k, newArr, 3);
+                                            // cout << tempOpr << endl;
+                                            arrSolutions[nSolutions] = tempOpr;
+                                            if(nSolutions < 500){
+                                                nSolutions++;
+                                            }
+                                        }
+                                        temp = calculate4(i,j,k, newArr);
+                                        //cout << temp << "|4|" <<endl; // Hanya untuk mengecek
+                                        if (temp == 24){
+                                            tempOpr = makeOpr(i, j, k, newArr, 4);
+                                            // cout << tempOpr << endl;
+                                            arrSolutions[nSolutions] = tempOpr;
+                                            if(nSolutions < 500){
+                                                nSolutions++;
+                                            }
+                                        }
+                                        temp = calculate5(i,j,k, newArr);
+                                        // cout << temp << "|5|" <<endl; // Hanya untuk mengecek
+                                        if (temp == 24){
+                                            tempOpr = makeOpr(i, j, k, newArr, 5);
+                                            // cout << tempOpr << endl; 
+                                            arrSolutions[nSolutions] = tempOpr;
+                                            if(nSolutions < 500){
+                                                nSolutions++;
+                                            }
+                                        }
                                     }
                                 }
                             }
+
+
                         }
 
 
@@ -139,21 +175,57 @@ int main () {
         }
     }
     
+    // Displaying Solutions
+    string hBorder;
+    for (i = 0; i < (tempOpr.length()+8) ; i++){
+        hBorder += "=";
+    }
     cout << "The amount of solutions: " << nSolutions << endl;
 
+
     if (nSolutions == 0){
-        cout << "No equations can be showed since there is no solution." << endl;
+        cout << " []========================================================[]" << endl;
+        cout << " || No equation can be showed since there is no solution. ||" << endl;
+        cout << " []========================================================[]" << endl;
     } else {
+        cout << "  []"<< hBorder <<"[]  " << endl;
+        cout << "          Solutions" << endl;
+        cout << "  []"<< hBorder <<"[]  " << endl;
         for (i = 0; i < nSolutions; i++){
-            cout << arrSolutions[i] << endl;
+            cout << "  ||    " <<arrSolutions[i] << "    ||  " << endl;
         }
+        cout << "  []"<< hBorder <<"[]  " << endl;
     }
+    
 
     // Stopping the timer
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop-start);
 
     cout << "Execution time: " << duration.count() << " microseconds" << endl;
+
+    // Saving the results in a file
+    char save;
+    cout << "Do you wish to save the result in a file? (y/n)" << endl ;
+    do {
+        cout << "=> " ;
+        cin >> save;
+        save = capitalize(save);
+        if (save != 'Y' && save != 'N'){
+            cout << "Invalid input detected. Please insert again: " << endl;
+        }
+    } while (save != 'Y' && save != 'N');
+
+    if (save == 'Y'){
+        string fileName;
+        cout << "Please insert the file name: " << endl;
+        cout << "=> " ;
+        cin >> fileName;
+        writeOnFile(arrSolutions, fileName, nSolutions);
+        cout << fileName << ".txt has been saved and stored inside the 'test' folder!" << endl;
+    }
+
+    cout << "The program has been stopped." << endl;
 
     return 0;
 }
