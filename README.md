@@ -47,7 +47,7 @@ Under ideal circumstances, you just need to run the executable file on the 'bin'
 ### **Option 1 (Users Manually Input Their Set of Cards)**
 <img src="assets/option1.jpg">
 
-### **Option 2 (Users Manually Input Their Set of Cards)**
+### **Option 2 (The Program Automatically Generate a Random Set of Cards)**
 <img src="assets/option2.jpg">
 
 ### **Displayed Solutions**
