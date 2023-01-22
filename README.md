@@ -4,6 +4,7 @@
 
 ## **Table of Contents**
 * [Program Description](#program-description)
+* [Required Program](#required-program)
 * [How to Run The Program](#how-to-run-the-program)
 * [How to Compile The Program](#how-to-compile-the-program)
 * [Implementation Screenshots](#implementation-screenshots)
@@ -13,6 +14,9 @@
 
 ## **Program Description**
 *24 card game* is an arithmetical card game with the goal to find a way to calculate 4 random cards to be equal to 24. To play this game, playing cards is needed. Playing cards consist of 4 symbols, Spades, Hearts, Clubs, and Diamonds. Each symbol consist of 13 cards, sorted as the Ace, 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, and King. In *24 card game* the Ace has the value of 1, the Jack equals to 11, the Queen equals to 12, and the King equals to 13. Only basic arithmetical operations can be used in this game, which are addition (+), subtraction (-), multiplication (*), and division (/). Each of the 4 cards used in the game can only be used exactly once.
+
+## **Required Program**
+To compile this program, you will need to install **C++ compilers** on the device you are using. You may search the reference to install it on the internet.
 
 ## **How to Run The Program**
 1. Clone this repository <br>
