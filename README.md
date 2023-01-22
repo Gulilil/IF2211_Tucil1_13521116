@@ -21,9 +21,10 @@
 3. Run the program <br>
 `$ main.exe`
 
-
-</ol>
-
+## **How to Compile The Program**
+Under ideal circumstances, you just need to run the executable file on the 'bin' folder to run the program. Therefore, you can follow the [How to Run The Program](#how-to-run-the-program) steps above. However, if the program does not work, you can try to recompile the program following these steps:
+1. Clone this repository (skip if this step is done)<br>
+`$ git clone  https://github.com/Gulilil/Tucil1_13521116.git`
 
 ## **Implementation Screenshots**
 
