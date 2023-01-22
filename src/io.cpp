@@ -2,6 +2,15 @@
 #include <fstream>
 using namespace std;
 
+void displayArt(){
+    string bufferline;
+    ifstream file("../src/art.txt");
+    while(getline(file, bufferline)){
+        cout << bufferline << endl;
+    }
+    file.close();
+}
+
 char capitalize(char C){
     // Digunakan untuk memastikan bahwa input user untuk Char adalah huruf Kapital
     if ( C >= 97 && C <= 122){

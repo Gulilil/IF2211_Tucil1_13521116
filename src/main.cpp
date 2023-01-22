@@ -16,6 +16,9 @@ int main () {
     string arrSolutions[500];
     int permuteArr[24][4];
     int nPermutes = 0;
+
+    // Display Ascii Art
+    displayArt();
     
     // Reading Input
     int ans;
@@ -174,6 +177,9 @@ int main () {
             }
         }
     }
+
+    // Stopping the timer1 (calculation only)
+    auto stop1 = high_resolution_clock::now();
     
     // Displaying Solutions
     string hBorder;
@@ -198,11 +204,14 @@ int main () {
     }
     
 
-    // Stopping the timer
-    auto stop = high_resolution_clock::now();
-    auto duration = duration_cast<microseconds>(stop-start);
+    // Stopping the timer2 (calculation + displaying result)
+    auto stop2 = high_resolution_clock::now();
+    
+    auto duration1 = duration_cast<microseconds>(stop1-start);
+    auto duration2 = duration_cast<microseconds>(stop2-start);
 
-    cout << "Execution time: " << duration.count() << " microseconds" << endl;
+    cout << "Execution time for BF Algorithm only: " << duration1.count() << " microseconds" << endl;
+    cout << "Execution time including displaying the result: " << duration2.count() << " microseconds" << endl;
 
     // Saving the results in a file
     char save;
