@@ -62,7 +62,7 @@ Under ideal circumstances, you just need to run the executable file on the 'bin'
 | Point | Yes | No |
 |-----|-----|------|
 |The program is able to be compiled without any issues| &check; |   |
-|The program is successfully b started and run|&check;   |  |
+|The program successfully starts and runs | &check;   |  |
 |The program is able to read user input and to automatically generate input itself | &check;  |  |
 |The program is able to display an output | &check;  |  |
 |Each solution given by the program equals to 24 | &check;  |  |
