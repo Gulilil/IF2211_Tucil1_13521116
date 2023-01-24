@@ -4,6 +4,7 @@
         "string": "cpp",
         "chrono": "cpp",
         "bitset": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "*.tcc": "cpp"
     }
 }

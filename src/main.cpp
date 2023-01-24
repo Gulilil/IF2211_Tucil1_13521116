@@ -21,7 +21,7 @@ int main () {
     displayArt();
     
     // Reading Input
-    int ans;
+    char ans;
     float temp;
     cout << "Hi there! Welcome to 24 card game solver! " << endl;
     cout << "Here are the options you can use to run the program: " << endl;
@@ -29,18 +29,26 @@ int main () {
     cout << "(2) to automatically generate random numbers. " << endl;
     cout << "=> " ;
     cin >> ans;
-    while (ans > 2 || ans < 1){
+    cin.clear();
+    cin.ignore(100,'\n');
+
+    while (ans > '2' || ans < '1'){
         cout << "The answer you just inputted is invalid. Please insert an appropriate input." << endl;
         cout << "=> " ;
         cin >> ans;
+        cin.clear();
+        cin.ignore(100,'\n');
     }
 
-    if (ans == 1){
+    if (ans == '1'){
         cout << "Please insert the desired numbers. List of valid inputs:" << endl;
         cout << "A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K. (e.g. 10 A 3 J)" << endl;
         string a, b, c, d;
         cout << "=> " ;
         cin >> a >> b >> c >> d;
+        cin.clear();
+        cin.ignore(100,'\n');
+
         arr[0] = integerConvert(a);
         arr[1] = integerConvert(b);
         arr[2] = integerConvert(c);
@@ -58,6 +66,9 @@ int main () {
             allValid = 1;
             cout << "=> " ;
             cin >> a >> b >> c >> d;
+            cin.clear();
+            cin.ignore(100,'\n');
+
             arr[0] = integerConvert(a);
             arr[1] = integerConvert(b);
             arr[2] = integerConvert(c);
@@ -69,6 +80,7 @@ int main () {
                 }
             }
         }
+
     } else {
         // Random Number Generator
         cout << "The program will generate random inputs for you." << endl;
@@ -219,6 +231,8 @@ int main () {
     do {
         cout << "=> " ;
         cin >> save;
+        cin.clear();
+        cin.ignore(100,'\n');
         save = capitalize(save);
         if (save != 'Y' && save != 'N'){
             cout << "Invalid input detected. Please insert again: " << endl;

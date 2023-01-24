@@ -75,7 +75,7 @@ Under ideal circumstances, you just need to run the executable file on the 'bin'
 | *assets*| *.jpg* files | Contains images used in *readme.md* file |
 | *bin* | main.exe | Contains executable file, *main.exe*, used to run the program | 
 | *doc* | *.pdf* files| Contains the report paper that explains the program in complete   |
-| *src* | art.txt| Contains ascii art that is displayed when the program stars  |
+| *src* | art.txt| Contains ascii art that is displayed when the program starts  |
 | | calc.cpp | Contains every *Brute Force related* algorithm used in order to calculate and solving the problems  |
 | | io.cpp | Contains every algorithm to handle user input and displaying solutions as its output|
 | | main.cpp | Contains the main algorithm to solve 24 card problem |
